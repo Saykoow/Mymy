@@ -5,13 +5,22 @@ html {
 }
 
 body {
-  font-family: 'Outfit', sans-serif; /* Plus moderne que Poppins seul */
+  font-family: 'Poppins', sans-serif; /* Plus moderne que Poppins seul */
   margin: 0;
   overflow: hidden; /* Empêche les barres de défilement */
-  background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%); /* Couleurs douces style Red Velvet */
+  /* background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
   background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite; /* Fond qui bouge doucement */
+  animation: gradientBG 15s ease infinite; 
+  color: #fff; */
+  background: linear-gradient(135deg, #FF69B4 0%, #FFC0CB 50%, #FF69B4 100%); 
+  background-size: 300% 300%; 
+  animation: gradientBG 20s ease infinite; /* Rendre l'animation plus lente */
   color: #fff;
+}
+
+.one, .three, .wish-hbd {
+  font-family: 'Outfit', sans-serif; /* Outfit pour les titres (plus "bold") */
+  font-weight: 800; /* Forcer le gras pour l'impact */
 }
 
 .song {
@@ -261,6 +270,21 @@ body {
 #replay {
   cursor: pointer;
   z-index: 3;
+  /* Nouveau style pour le clic */
+  display: inline-block;
+  background: #ff6b6b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+#replay:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
 }
 
 /* Media Queries */
@@ -343,8 +367,14 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  background: #015871;
+  background: #015871; 
   z-index: 0;
+}
+
+.one, .two, .three, .four, .five, .six, .nine {
+  text-shadow: 
+      0 0 5px rgba(0,0,0,0.4), /* Ombre noire douce et proche */
+      0 0 10px rgba(255, 255, 255, 0.3); /* Légère lueur blanche */
 }
 
 .wave {
@@ -355,6 +385,7 @@ body {
   height: 198px;
   animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
   transform: translate3d(0, 0, 0);
+  opacity: 0.9;
 }
 
 .wave:nth-of-type(2) {
@@ -380,6 +411,8 @@ body {
   position: relative;
   z-index: 2; /* Au dessus des vagues */
   text-align: center;
+  filter: blur(5px) grayscale(50%); /* Ajout du flou et d'une légère désaturation */
+  transition: filter 1.5s ease; /* Pour une transition douce si besoin */
 }
 
 /* Amélioration des Textes */
@@ -418,6 +451,7 @@ body {
   width: 200px; /* Taille fixe pour éviter les déformations */
   height: 200px;
   object-fit: cover;
+  filter: blur(10px) brightness(80%);
 }
 
 /* --- LE SOLEIL --- */
@@ -445,8 +479,16 @@ body {
         0 0 40px 10px rgba(255, 215, 0, 0.6),   /* Halo doré */
         0 0 150px 40px rgba(255, 105, 135, 0.5); /* Grand halo rosé magique */
     /* Petite animation de respiration */
-    animation: sun-pulse 5s ease-in-out infinite alternate;
+    animation: 
+        sun-pulse 5s ease-in-out infinite alternate,
+        sun-float 10s ease-in-out infinite; /* Nouvelle animation */
     filter: blur(1px); /* Adoucit légèrement les bords */
+}
+
+@keyframes sun-float {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-5px, 10px); } /* Déplace légèrement */
+    100% { transform: translate(0, 0); }
 }
 
 /* Animation pour faire pulser doucement la lumière */

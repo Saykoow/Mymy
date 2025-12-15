@@ -1,6 +1,6 @@
 // --- CONFIGURATION GLOBALE ---
 const TARGET_YEAR = 2025;
-const TARGET_DATE_STR = `Dec 14, ${TARGET_YEAR} 00:00:00`;
+const TARGET_DATE_STR = `Dec 18, ${TARGET_YEAR} 00:00:00`;
 const TARGET_DATE_MS = new Date(TARGET_DATE_STR).getTime();
 
 // Référence à l'élément audio (supposée exister dans le HTML avec la classe 'song')

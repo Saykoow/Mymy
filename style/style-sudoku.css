@@ -1,0 +1,285 @@
+/* Animation de fond (à conserver pour un dégradé qui bouge) */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Utilisation d'un fond chaud inspiré du coucher de soleil */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Nouveau dégradé : Soleil Couchant (Orange Brûlé vers Or Pâle) */
+    background: linear-gradient(135deg, #FF7E5F 0%, #FEB47B 100%); 
+    background-size: 300% 300%; 
+    animation: gradientBG 25s ease infinite;
+    color: #4E342E; /* Texte principal en marron foncé */
+    padding: 20px;
+}
+
+/* Conteneur principal (effet de chaleur et légèreté) */
+#sudoku-container {
+    /* Fond semi-transparent et léger */
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 40px; 
+    
+    /* Ombre subtile, couleur terre */
+    box-shadow: 0 10px 30px rgba(109, 76, 65, 0.3);
+    text-align: center;
+    color: #4E342E; 
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* C'est la clé pour centrer la grille */
+    justify-content: center;
+}
+
+h1 {
+    color: #FF7043; /* Rouge-Orange Vif pour le titre */
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.instruction {
+    margin-bottom: 30px;
+    font-style: italic;
+    color: #795548; /* Brun moyen */
+}
+
+/* --- GRILLE SUDOKU --- */
+#sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    width: 480px; 
+    height: 480px;
+    margin: 30px auto;
+    
+    /* Bordures d'encadrement principales (Brun Cacao) */
+    border-top: 4px solid #6D4C41; 
+    border-left: 4px solid #6D4C41;
+}
+
+.cell {
+    width: 100%;
+    height: 100%;
+    /* Bordures fines (Gris clair chaud) */
+    border-right: 1px solid #D7CCC8; 
+    border-bottom: 1px solid #D7CCC8; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 600; 
+    cursor: pointer;
+    background-color: #FFF8E1; /* Crème très pâle (couleur sable) */
+    color: #333; 
+    transition: background-color 0.2s, transform 0.1s;
+    box-sizing: border-box; 
+    
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* État sélectionné */
+.cell.selected {
+    background-color: #FFECB3 !important; /* Jaune doux et chaud (couleur du soleil) */
+    transform: scale(1.02);
+    border: 1px solid #FFCC80;
+}
+
+.cell:hover:not(.fixed) {
+    background-color: #FFE0B2; /* Orange très pâle au survol */
+}
+
+/* Bordures verticales épaisses (Colonnes 3 et 6) */
+.cell:nth-child(9n + 3) {
+    border-right-width: 3px;
+    border-right-color: #6D4C41; /* Brun Cacao */
+}
+.cell:nth-child(9n + 6) {
+    border-right-width: 3px;
+    border-right-color: #6D4C41; /* Brun Cacao */
+}
+
+/* Bordures horizontales épaisses (Lignes 3 et 6) */
+.row-bottom-border {
+    border-bottom-width: 3px !important;
+    border-bottom-color: #6D4C41 !important; /* Brun Cacao */
+}
+
+.fixed {
+    background-color: #EFEBE9; /* Gris/Crème neutre */
+    color: #4E342E; /* Marron foncé */
+    cursor: default;
+    font-weight: bold;
+}
+
+/* Styles pour les entrées utilisateur */
+.user-input {
+    color: #FF9800; /* Orange vif (couleur de l'automne/citrouille) */
+}
+
+/* --- CONTRÔLES (Boutons) --- */
+#controls {
+    margin-top: 20px;
+}
+
+#controls button {
+    background: #FF7043; /* Rouge-Orange Vif */
+    color: white;
+    border: none;
+    padding: 12px 25px; 
+    border-radius: 50px; 
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 112, 67, 0.4);
+    text-transform: uppercase;
+}
+
+#controls button:hover {
+    background: #FFAB91;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 112, 67, 0.6);
+}
+
+#controls button#reset-btn {
+    background: #A1887F; /* Brun plus doux pour le reset */
+    box-shadow: 0 4px 15px rgba(161, 136, 127, 0.4);
+}
+#controls button#reset-btn:hover {
+    background: #D7CCC8;
+}
+
+
+/* --- MESSAGES --- */
+#message-area {
+    margin-top: 30px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #4E342E; 
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.success {
+    background: #8BC34A; /* Vert Nature (Feuille d'Été) */
+    color: white;
+    box-shadow: 0 4px 10px rgba(139, 195, 74, 0.5);
+}
+
+.error {
+    background: #FF5722; /* Rouge Brique (Couleur Automne) */
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.5);
+}
+
+/* --- CLAVIER VIRTUEL MOBILE --- */
+#sudoku-keypad {
+    display: none; /* Cacher par défaut */
+    margin-top: 20px;
+    width: 480px; /* Aligné avec la grille */
+    max-width: 100%;
+    user-select: none; /* Empêche la sélection de texte */
+}
+
+/* Affichage sur mobile uniquement */
+@media (max-width: 600px) {
+    #sudoku-keypad {
+        display: block; /* Afficher sur les petits écrans */
+        width: 90vw;
+        margin-top: 20px;
+    }
+    #sudoku-grid {
+        width: 90vw;
+        height: 90vw;
+        margin: 15px auto;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+.keypad-row {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5px;
+}
+
+#sudoku-keypad button {
+    flex: 1;
+    margin: 5px;
+    padding: 15px 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #FFAB91; /* Couleur chaude */
+    color: white;
+    transition: background-color 0.1s;
+}
+
+#sudoku-keypad button:active {
+    background-color: #FF7043;
+}
+
+#clear-key {
+    background-color: #A1887F;
+    padding: 10px 0;
+    font-size: 1.1rem;
+}
+
+/* --- ADAPTATION MOBILE (Pour les écrans jusqu'à 600px de large) --- */
+@media (max-width: 600px) {
+    
+    /* Rendre le conteneur plus petit et plus flexible sur mobile */
+    #sudoku-container {
+        padding: 20px 10px;
+        max-width: 100%;
+        margin: 0;
+        /* Sur mobile, on veut que le conteneur prenne l'écran entier s'il le faut */
+        min-height: 100vh; 
+        border-radius: 0;
+    }
+
+    /* Adapter la GRILLE à la largeur de l'écran (90% de la vue) */
+    #sudoku-grid {
+        width: 90vw; 
+        height: 90vw; /* Utilise la même taille pour que la grille reste carrée */
+        margin: 20px auto; /* 'auto' aidera au centrage si le parent n'est pas flex */
+        /* display: block; -- (Inutile car #sudoku-container est déjà flex centré) */
+    }
+
+    /* Adapter les boutons du clavier virtuel */
+    #sudoku-keypad {
+        width: 90vw; 
+    }
+    
+    /* Ajuster la taille des cellules et des textes si nécessaire */
+    .cell {
+        font-size: 1.2rem; /* Réduire légèrement la police pour qu'elle tienne */
+        border-right-width: 0.5px; /* Affiner les bordures fines */
+        border-bottom-width: 0.5px;
+    }
+    
+    /* Ajuster la taille de la police du titre */
+    h1 {
+        font-size: 1.8rem;
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Golden day Jour 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style/style-sudoku.css" />
+</head>
+
+<body>
+
+    <div id="sudoku-container">
+        <h1>Golden day Jour 2 : Le Sudoku !</h1>
+        <p class="instruction">Si tu trouves la solution tu auras le droit à un truc secret !</p>
+
+        <div id="sudoku-grid">
+        </div>
+
+        <div id="controls">
+            <button id="check-btn">Confirmer la solution</button>
+            <button id="reset-btn">Tout effacer</button>
+        </div>
+
+        <div id="sudoku-keypad" class="hidden">
+            <div class="keypad-row">
+                <button data-value="1">1</button>
+                <button data-value="2">2</button>
+                <button data-value="3">3</button>
+            </div>
+            <div class="keypad-row">
+                <button data-value="4">4</button>
+                <button data-value="5">5</button>
+                <button data-value="6">6</button>
+            </div>
+            <div class="keypad-row">
+                <button data-value="7">7</button>
+                <button data-value="8">8</button>
+                <button data-value="9">9</button>
+            </div>
+            <div class="keypad-row">
+                <button data-value="0" id="clear-key">Effacer</button>
+            </div>
+        </div>
+
+        <div id="message-area" class="hidden">
+        </div>
+
+    </div>
+
+    <script type="application/javascript" src="./script/main-sudoku.js"></script>
+
+</body>
+
+</html>

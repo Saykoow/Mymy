@@ -1,5 +1,5 @@
 const TARGET_YEAR = 2025;
-const FINAL_START_STR = `Dec 17, ${TARGET_YEAR} 00:00:00`; // Cible le 20 décembre
+const FINAL_START_STR = `Dec 21, ${TARGET_YEAR} 00:00:00`; // Cible le 20 décembre
 const now = new Date().getTime();
 if (now >= new Date(FINAL_START_STR).getTime()) {
     window.location.href = 'index-final.html';
@@ -305,3 +305,4 @@ updateNextDayTimer();
 
 
 window.addEventListener('load', initQuiz);
+

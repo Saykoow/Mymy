@@ -1,3 +1,35 @@
+// Sécurité : Vérifier si on est sur la bonne page par rapport à la date
+(function securityCheck() {
+    const now = new Date().getTime();
+    const TARGET_YEAR = 2025; //
+    const BIRTHDAY_MS = new Date(`Dec 18, ${TARGET_YEAR} 00:00:00`).getTime(); //
+    const SUDOKU_MS = new Date(`Dec 19, ${TARGET_YEAR} 00:00:00`).getTime(); //
+    const QUIZ_MS = new Date(`Dec 20, ${TARGET_YEAR} 00:00:00`).getTime(); //
+    const FINAL_MS = new Date(`Dec 21, ${TARGET_YEAR} 00:00:00`).getTime(); //
+
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // Si on essaie d'accéder à une page avant la date prévue, 
+    // ou si on est sur une ancienne page, on renvoie vers index-party.html
+    // qui s'occupera de rediriger vers le bon jour.
+    
+    let shouldRedirect = false;
+
+    if (now < SUDOKU_MS && currentPage === 'index-sudoku.html') shouldRedirect = true;
+    if (now < QUIZ_MS && currentPage === 'index-quiz.html') shouldRedirect = true;
+    if (now < FINAL_MS && currentPage === 'index-final.html') shouldRedirect = true;
+    
+    // Si on dépasse la date d'une page (ex: on est le 20 mais sur le Sudoku),
+    // on renvoie aussi vers l'accueil pour qu'il nous propulse au Quiz.
+    if (now >= SUDOKU_MS && currentPage === 'index.html' && !window.location.search.includes('force')) {
+        // On laisse index-party.html gérer la redirection naturelle
+    }
+
+    if (shouldRedirect) {
+        window.location.href = 'index.html';
+    }
+})();
+
 const card = document.getElementById('card');
 const typingTextElement = document.getElementById('typing-text');
 const signatureElement = document.getElementById('signature');
@@ -56,4 +88,5 @@ function typeWriter(text, i) {
         signatureElement.classList.remove('hidden');
         signatureElement.classList.add('visible');
     }
+
 }

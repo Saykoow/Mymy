@@ -21,12 +21,12 @@
     
     // Si on dépasse la date d'une page (ex: on est le 20 mais sur le Sudoku),
     // on renvoie aussi vers l'accueil pour qu'il nous propulse au Quiz.
-    if (now >= SUDOKU_MS && currentPage === 'index-party.html' && !window.location.search.includes('force')) {
+    if (now >= SUDOKU_MS && currentPage === 'index.html' && !window.location.search.includes('force')) {
         // On laisse index-party.html gérer la redirection naturelle
     }
 
     if (shouldRedirect) {
-        window.location.href = 'index-party.html';
+        window.location.href = 'index.html';
     }
 })();
 
@@ -277,6 +277,7 @@ updateNextDayTimer();
 
 // Lancement du jeu au chargement de la page
 window.addEventListener('load', initSudoku);
+
 
 
 

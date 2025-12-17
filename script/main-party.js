@@ -1,7 +1,7 @@
 // --- CONFIGURATION GLOBALE MISE À JOUR ---
 const TARGET_YEAR = 2025;
 const BIRTHDAY_START_STR = `Dec 17, ${TARGET_YEAR} 00:00:00`; // Début de la fête (Jour 1)
-const SUDOKU_START_STR = `Dec 18, ${TARGET_YEAR} 00:00:00`; // Début du Sudoku (Jour 2)
+const SUDOKU_START_STR = `Dec 17, ${TARGET_YEAR} 00:00:00`; // Début du Sudoku (Jour 2)
 const QUIZ_START_STR = `Dec 20, ${TARGET_YEAR} 00:00:00`; // NOUVEAU : Début du Quiz (Jour 3)
 
 const BIRTHDAY_START_MS = new Date(BIRTHDAY_START_STR).getTime();

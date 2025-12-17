@@ -1,5 +1,5 @@
 const TARGET_YEAR = 2025;
-const QUIZ_START_STR = `Dec 20, ${TARGET_YEAR} 00:00:00`; // Cible le 20 décembre
+const QUIZ_START_STR = `Dec 17, ${TARGET_YEAR} 00:00:00`; // Cible le 20 décembre
 const QUIZ_START_MS = new Date(QUIZ_START_STR).getTime();
 
 (function checkRedirection() {
@@ -245,4 +245,5 @@ updateNextDayTimer();
 
 // Lancement du jeu au chargement de la page
 window.addEventListener('load', initSudoku);
+
 

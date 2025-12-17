@@ -368,8 +368,31 @@ const animationTimeline = () => {
     );
 };
 
+const updateNextDayTimer = () => {
+    const timerEl = document.getElementById('next-day-timer');
+    if (!timerEl) return;
+
+    setInterval(() => {
+        const now = new Date().getTime();
+        const distance = new Date(`Dec 19, ${TARGET_YEAR} 00:00:00`).getTime() - now;
+
+        if (distance < 0) {
+            timerEl.innerText = "C'est prêt ! Actualise !";
+            return;
+        }
+
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        timerEl.innerText = `${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+};
+updateNextDayTimer();
+
 // --- INITIALISATION AU CHARGEMENT DE LA PAGE ---
 window.addEventListener('load', () => {
     // La logique de 'checkTime' inclut la redirection/lancement de la fête/compte à rebours.
     checkTime();
 });
+

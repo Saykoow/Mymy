@@ -1,0 +1,251 @@
+/* Animation de fond */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Thème Soleil Couchant */
+    background: linear-gradient(135deg, #FF7E5F 0%, #FEB47B 100%); 
+    background-size: 300% 300%; 
+    animation: gradientBG 25s ease infinite;
+    padding: 20px;
+}
+
+#quiz-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px; 
+    box-shadow: 0 10px 30px rgba(109, 76, 65, 0.3); /* Ombre chaude */
+    text-align: center;
+    color: #4E342E; 
+    max-width: 650px; /* Légèrement plus large pour l'input */
+    width: 95%;
+}
+
+h1 {
+    color: #FF7043;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.instruction {
+    margin-bottom: 30px;
+    font-style: italic;
+    color: #795548;
+}
+
+/* --- PROGRESSION ET SCORE --- */
+#progress-area {
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+#score-counter {
+    display: block;
+    margin-bottom: 10px;
+    color: #FF9800;
+}
+#progress-bar-container {
+    height: 12px; /* Plus épaisse */
+    background-color: #EFEBE9;
+    border-radius: 6px;
+    overflow: hidden;
+}
+#progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #FF7043; 
+    transition: width 0.4s ease;
+}
+
+/* --- QUESTION ET RÉPONSES (SAISIE TEXTE) --- */
+#question-area {
+    background: #FFF8E1; /* Fond crème doux (couleur de la grille Sudoku) */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+#question-text {
+    font-size: 1.6rem;
+    color: #4E342E;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* Conteneur de saisie et de validation */
+#answer-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#answer-input {
+    flex-grow: 1;
+    padding: 15px;
+    border: 2px solid #FFCC80; /* Bordure jaune/orange */
+    border-radius: 10px;
+    font-size: 1.1rem;
+    color: #4E342E;
+    transition: border-color 0.3s;
+}
+
+#answer-input:focus {
+    border-color: #FF7043; /* Focus orange vif */
+    outline: none;
+}
+
+#submit-button {
+    background: #FF9800; /* Orange Validation */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex-shrink: 0;
+}
+#submit-button:hover:not(:disabled) {
+    background: #FFB74D;
+}
+#submit-button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+
+/* --- FEEDBACK ET BOUTON SUIVANT --- */
+#feedback-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: left;
+    transition: opacity 0.3s;
+}
+
+.feedback-error {
+    background-color: #FFCDD2; /* Rouge pâle */
+    color: #C62828; /* Rouge foncé */
+    border: 1px solid #C62828;
+}
+.feedback-success {
+    background-color: #DCEDC8; /* Vert pâle */
+    color: #33691E; /* Vert foncé */
+    border: 1px solid #33691E;
+}
+
+#next-button, #restart-button {
+    margin-top: 20px;
+    background: #795548; /* Brun foncé (plus élégant pour la suite) */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+#next-button:hover, #restart-button:hover {
+    background: #A1887F;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- RESULTATS FINAUX --- */
+#result-area {
+    padding: 30px;
+    background: #FFF8E1;
+    border-radius: 15px;
+}
+#result-area h2 {
+    color: #795548;
+}
+#final-message {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+    #quiz-container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    #question-text {
+        font-size: 1.4rem;
+    }
+    #answer-input-container {
+        flex-direction: column;
+    }
+    #submit-button {
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 800px) {
+    #quiz-container {
+        width: 90%;
+        padding: 25px;
+    }
+    
+    #question-text {
+        font-size: 1.3rem; /* Plus lisible sur iPhone 11 */
+    }
+}
+
+.next-day-badge {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 15px;
+    border-radius: 12px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    pointer-events: none; /* Ne gêne pas les clics en dessous */
+}
+
+.badge-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#next-day-timer {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* On le cache sur les très petits écrans si tu trouves que ça encombre */
+@media (max-width: 450px) {
+    .next-day-badge {
+        padding: 5px 10px;
+        top: 10px;
+        left: 10px;
+    }
+    #next-day-timer { font-size: 0.9rem; }
+}
